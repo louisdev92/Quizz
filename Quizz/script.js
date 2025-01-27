@@ -1,67 +1,93 @@
-// Variables pour les boutons et les réponses
-const btn1 = document.querySelector("#btn-1");
-const btn2 = document.querySelector("#btn-2");
-const btn3 = document.querySelector("#btn-3");
-const btn4 = document.querySelector("#btn-4");
-const btn5 = document.querySelector("#btn-5");
-const btn6 = document.querySelector("#btn-6");
-const btn7 = document.querySelector("#btn-7");
-const btn8 = document.querySelector("#btn-8");
-const btn9 = document.querySelector("#btn-9");
-const btn10 = document.querySelector("#btn-10");
-const btn11 = document.querySelector("#btn-11");
-const btn12 = document.querySelector("#btn-12");
-const btn13 = document.querySelector("#btn-13");
-const btn14 = document.querySelector("#btn-14");
-const btn15 = document.querySelector("#btn-15");
-const btn16 = document.querySelector("#btn-16");
-const btn17 = document.querySelector("#btn-17");
-const btn18 = document.querySelector("#btn-18");
-const btn19 = document.querySelector("#btn-19");
-const btn20 = document.querySelector("#btn-20");
+let correctAnswers = 0;  // Compteur des bonnes réponses
 
-const responses = [
-    btn1.nextElementSibling.nextElementSibling,
-    btn3.nextElementSibling.nextElementSibling,
-    btn5.nextElementSibling.nextElementSibling,
-    btn7.nextElementSibling.nextElementSibling,
-    btn9.nextElementSibling.nextElementSibling,
-    btn11.nextElementSibling.nextElementSibling,
-    btn13.nextElementSibling.nextElementSibling,
-    btn15.nextElementSibling.nextElementSibling,
-    btn17.nextElementSibling.nextElementSibling,
-    btn19.nextElementSibling.nextElementSibling
+// Tableau des bonnes réponses
+const correctAnswersArray = [
+    true,  // Question 1: Vrai
+    true,  // Question 2: Vrai
+    false, // Question 3: Faux
+    true,  // Question 4: Vrai
+    false, // Question 5: Faux
+    true,  // Question 6: Vrai
+    false, // Question 7: Faux
+    true,  // Question 8: Vrai
+    true,  // Question 9: Vrai
+    true   // Question 10: Vrai
 ];
 
-// Les bonnes réponses
-const correctAnswers = [true, true, false, true, false, true, false, true, true, true];
+// Fonction pour vérifier la réponse
+function checkAnswer(button, questionIndex) {
+    const isCorrect = correctAnswersArray[questionIndex - 1];
+    const responseElement = button.closest('.question-container').querySelector('.response'); // Cibler la réponse correspondante
 
-// Initialisation du score
-let score = 0;
-
-// Fonction pour afficher la réponse avec l'animation de couleur
-function showResponse(button, isCorrect, index) {
-    const response = responses[index];
-    response.classList.add('show'); // Afficher la réponse
-
-    if (isCorrect) {
-        response.style.backgroundColor = 'green'; // Si correct, couleur verte
-        score++;
+    // Afficher la bonne ou mauvaise couleur
+    if (isCorrect && button.textContent === "Vrai" || !isCorrect && button.textContent === "Faux") {
+        button.classList.add('correct');
+        correctAnswers++; // Incrémenter le score si la réponse est correcte
+        responseElement.textContent = "Bonne réponse !";
+        responseElement.classList.add("show");
+        responseElement.classList.add("correct"); // Ajouter la classe 'correct' pour colorier la réponse en vert
     } else {
-        response.style.backgroundColor = 'red'; // Si incorrect, couleur rouge
+        button.classList.add('incorrect');
+        responseElement.textContent = "Mauvaise réponse !";
+        responseElement.classList.add("show");
+        responseElement.classList.add("incorrect"); // Ajouter la classe 'incorrect' pour colorier la réponse en rouge
     }
 
-    // Désactiver tous les boutons après une réponse
-    const buttons = button.parentElement.querySelectorAll('button');
-    buttons.forEach(b => b.disabled = true);
+    // Désactiver les deux boutons pour empêcher de cliquer plusieurs fois
+    disableButtons(questionIndex);
+
+    // Vérifier si toutes les questions ont été répondues
+    checkAllAnswered();
 }
 
-// Ajouter des événements de clic aux boutons
-btn1.addEventListener("click", () => showResponse(btn1, correctAnswers[0], 0));
-btn2.addEventListener("click", () => showResponse(btn2, !correctAnswers[0], 0));
-btn3.addEventListener("click", () => showResponse(btn3, correctAnswers[1], 1));
-btn4.addEventListener("click", () => showResponse(btn4, !correctAnswers[1], 1));
-btn5.addEventListener("click", () => showResponse(btn5, correctAnswers[2], 2));
-btn6.addEventListener("click", () => showResponse(btn6, !correctAnswers[2], 2));
-btn7.addEventListener("click", () => showResponse(btn7, correctAnswers[3], 3));
-btn8.addEventListener("click", () => showResponse(btn8, !correctAnswers[3
+// Désactiver les boutons après avoir répondu à la question
+function disableButtons(questionIndex) {
+    const buttons = document.querySelectorAll(`#btn-${questionIndex * 2 - 1}, #btn-${questionIndex * 2}`);
+    buttons.forEach(button => button.disabled = true);
+}
+
+// Vérifier si toutes les questions ont été répondues et afficher le score final
+function checkAllAnswered() {
+    const allQuestions = document.querySelectorAll(".question-container");
+    let answeredQuestions = 0;
+
+    allQuestions.forEach((question, index) => {
+        const buttons = question.querySelectorAll(".btn");
+        if (Array.from(buttons).every(button => button.disabled)) {
+            answeredQuestions++;
+        }
+    });
+
+    if (answeredQuestions === allQuestions.length) {
+        displayResult();
+    }
+}
+
+// Afficher le résultat final
+function displayResult() {
+    const finalResult = document.getElementById("final-result");
+    finalResult.textContent = `Vous avez répondu correctement à ${correctAnswers} question(s) sur ${correctAnswersArray.length}.`;
+    finalResult.style.display = "block"; // Afficher le message final
+}
+
+// Ajouter des écouteurs d'événements aux boutons
+document.getElementById("btn-1").addEventListener("click", function() { checkAnswer(this, 1); });
+document.getElementById("btn-2").addEventListener("click", function() { checkAnswer(this, 1); });
+document.getElementById("btn-3").addEventListener("click", function() { checkAnswer(this, 2); });
+document.getElementById("btn-4").addEventListener("click", function() { checkAnswer(this, 2); });
+document.getElementById("btn-5").addEventListener("click", function() { checkAnswer(this, 3); });
+document.getElementById("btn-6").addEventListener("click", function() { checkAnswer(this, 3); });
+document.getElementById("btn-7").addEventListener("click", function() { checkAnswer(this, 4); });
+document.getElementById("btn-8").addEventListener("click", function() { checkAnswer(this, 4); });
+document.getElementById("btn-9").addEventListener("click", function() { checkAnswer(this, 5); });
+document.getElementById("btn-10").addEventListener("click", function() { checkAnswer(this, 5); });
+document.getElementById("btn-11").addEventListener("click", function() { checkAnswer(this, 6); });
+document.getElementById("btn-12").addEventListener("click", function() { checkAnswer(this, 6); });
+document.getElementById("btn-13").addEventListener("click", function() { checkAnswer(this, 7); });
+document.getElementById("btn-14").addEventListener("click", function() { checkAnswer(this, 7); });
+document.getElementById("btn-15").addEventListener("click", function() { checkAnswer(this, 8); });
+document.getElementById("btn-16").addEventListener("click", function() { checkAnswer(this, 8); });
+document.getElementById("btn-17").addEventListener("click", function() { checkAnswer(this, 9); });
+document.getElementById("btn-18").addEventListener("click", function() { checkAnswer(this, 9); });
+document.getElementById("btn-19").addEventListener("click", function() { checkAnswer(this, 10); });
+document.getElementById("btn-20").addEventListener("click", function() { checkAnswer(this, 10); });
