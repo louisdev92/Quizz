@@ -1,28 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le DOM</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Quizz Interactif</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<h1>Quizz Interactif</h1>
 
-<div class="click-event box">
-    <h4>Le code 35 de cette page s'éxécute-t-il côté serveur ?</h4>
-    <button id="btn-1">VRAI</button>
-    <button id="btn-2">FAUX</button>
-    <p>La bonne réponse est faux</p>
+<div class="box">
+    <!-- Question 1 -->
+    <div class="question-container">
+        <p class="question">Question 1: Le soleil est une étoile.</p>
+        <button class="btn" id="btn-1">Vrai</button>
+        <button class="btn" id="btn-2">Faux</button>
+        <p class="response"></p>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question-container">
+        <p class="question">Question 2: L'eau est un liquide à température ambiante.</p>
+        <button class="btn" id="btn-3">Vrai</button>
+        <button class="btn" id="btn-4">Faux</button>
+        <p class="response"></p>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question-container">
+        <p class="question">Question 3: La Terre est plate.</p>
+        <button class="btn" id="btn-5">Vrai</button>
+        <button class="btn" id="btn-6">Faux</button>
+        <p class="response"></p>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question-container">
+        <p class="question">Question 4: L'eau gèle à 0°C.</p>
+        <button class="btn" id="btn-7">Vrai</button>
+        <button class="btn" id="btn-8">Faux</button>
+        <p class="response"></p>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question-container">
+        <p class="question">Question 5: Les dauphins sont des poissons.</p>
+        <button class="btn" id="btn-9">Vrai</button>
+        <button class="btn" id="btn-10">Faux</button>
+        <p class="response"></p>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question-container">
+        <p class="question">Question 6: L'oxygène est un gaz nécessaire à la vie.</p>
+        <button class="btn" id="btn-11">Vrai</button>
+        <button class="btn" id="btn-12">Faux</button>
+        <p class="response"></p>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="question-container">
+        <p class="question">Question 7: Les chats aiment l'eau.</p>
+        <button class="btn" id="btn-13">Vrai</button>
+        <button class="btn" id="btn-14">Faux</button>
+        <p class="response"></p>
+    </div>
+
+    <!-- Question 8 -->
+    <div class="question-container">
+        <p class="question">Question 8: L'Homme a marché sur la Lune.</p>
+        <button class="btn" id="btn-15">Vrai</button>
+        <button class="btn" id="btn-16">Faux</button>
+        <p class="response"></p>
+    </div>
+
+    <!-- Question 9 -->
+    <div class="question-container">
+        <p class="question">Question 9: La pizza vient d'Italie.</p>
+        <button class="btn" id="btn-17">Vrai</button>
+        <button class="btn" id="btn-18">Faux</button>
+        <p class="response"></p>
+    </div>
+
+    <!-- Question 10 -->
+    <div class="question-container">
+        <p class="question">Question 10: Les abeilles sont des insectes.</p>
+        <button class="btn" id="btn-19">Vrai</button>
+        <button class="btn" id="btn-20">Faux</button>
+        <p class="response"></p>
+    </div>
+
+    <div class="result">
+        <p id="final-result"></p>
+    </div>
 </div>
 
-<form action="#" method="post" class="box">
-    <label>
-        <input type="text" placeholder="Tapez votre texte">
-    </label>
-        <input type="submit" value="Valider">
-        <div></div>
-</form>
-
-<script src="index.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
