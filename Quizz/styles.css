@@ -82,3 +82,16 @@ button.incorrect {
     font-size: 20px;
     font-weight: bold;
 }
+
+/* Style du mode nuit */
+body.night-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+
+body.night-mode .box {
+    background-color: #333;
+    border-color: #555;
+}
+
