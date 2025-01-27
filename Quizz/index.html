@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizz Interactif</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 <h1>Quizz Interactif</h1>
@@ -12,7 +13,7 @@
 <div class="box">
     <!-- Question 1 -->
     <div class="question-container">
-        <p class="question">Question 1: Le soleil est une étoile.</p>
+        <p class="question">Question 1: Un sourire peut résoudre n'importe quel problème.</p>
         <button class="btn" id="btn-1">Vrai</button>
         <button class="btn" id="btn-2">Faux</button>
         <p class="response"></p>
@@ -20,7 +21,7 @@
 
     <!-- Question 2 -->
     <div class="question-container">
-        <p class="question">Question 2: L'eau est un liquide à température ambiante.</p>
+        <p class="question">Question 2: PSG > OM </p>
         <button class="btn" id="btn-3">Vrai</button>
         <button class="btn" id="btn-4">Faux</button>
         <p class="response"></p>
@@ -28,7 +29,7 @@
 
     <!-- Question 3 -->
     <div class="question-container">
-        <p class="question">Question 3: La Terre est plate.</p>
+        <p class="question">Question 3: BLACKPINK est le plus grand groupe de K-pop.</p>
         <button class="btn" id="btn-5">Vrai</button>
         <button class="btn" id="btn-6">Faux</button>
         <p class="response"></p>
@@ -36,7 +37,7 @@
 
     <!-- Question 4 -->
     <div class="question-container">
-        <p class="question">Question 4: L'eau gèle à 0°C.</p>
+        <p class="question">Question 4: L'eau gèle à 10°C.</p>
         <button class="btn" id="btn-7">Vrai</button>
         <button class="btn" id="btn-8">Faux</button>
         <p class="response"></p>
@@ -44,7 +45,7 @@
 
     <!-- Question 5 -->
     <div class="question-container">
-        <p class="question">Question 5: Les dauphins sont des poissons.</p>
+        <p class="question">Question 5: Le fleuve Han traverse Séoul.</p>
         <button class="btn" id="btn-9">Vrai</button>
         <button class="btn" id="btn-10">Faux</button>
         <p class="response"></p>
@@ -52,7 +53,7 @@
 
     <!-- Question 6 -->
     <div class="question-container">
-        <p class="question">Question 6: L'oxygène est un gaz nécessaire à la vie.</p>
+        <p class="question">Question 6: L'oxygène est un gaz pas nécessaire à la vie.</p>
         <button class="btn" id="btn-11">Vrai</button>
         <button class="btn" id="btn-12">Faux</button>
         <p class="response"></p>
@@ -60,7 +61,7 @@
 
     <!-- Question 7 -->
     <div class="question-container">
-        <p class="question">Question 7: Les chats aiment l'eau.</p>
+        <p class="question">Question 7: Une femme en Calvin Klein a toujours raison</p>
         <button class="btn" id="btn-13">Vrai</button>
         <button class="btn" id="btn-14">Faux</button>
         <p class="response"></p>
@@ -84,7 +85,7 @@
 
     <!-- Question 10 -->
     <div class="question-container">
-        <p class="question">Question 10: Les abeilles sont des insectes.</p>
+        <p class="question">Question 10: Les abeilles fabriques les miel pops.</p>
         <button class="btn" id="btn-19">Vrai</button>
         <button class="btn" id="btn-20">Faux</button>
         <p class="response"></p>
@@ -94,7 +95,8 @@
         <p id="final-result"></p>
     </div>
 </div>
-
+<button id="restart-btn">Recommencer</button>
+<button id="night-mode-toggle">Mode Nuit</button>
 <script src="script.js"></script>
 </body>
 </html>
