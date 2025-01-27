@@ -2,16 +2,16 @@ let correctAnswers = 0;  // Compteur des bonnes réponses
 
 // Tableau des bonnes réponses
 const correctAnswersArray = [
-    true,  // Question 1: Vrai
+    false,  // Question 1: Faux
     true,  // Question 2: Vrai
-    false, // Question 3: Faux
-    true,  // Question 4: Vrai
-    false, // Question 5: Faux
-    true,  // Question 6: Vrai
-    false, // Question 7: Faux
+    true, // Question 3: Vrai
+    false,  // Question 4: Faux
+    true, // Question 5: Vrai
+    false,  // Question 6: false
+    true, // Question 7: Vrai
     true,  // Question 8: Vrai
     true,  // Question 9: Vrai
-    true   // Question 10: Vrai
+    false,   // Question 10: Faux
 ];
 
 // Fonction pour vérifier la réponse
@@ -59,7 +59,10 @@ function checkAllAnswered() {
     });
 
     if (answeredQuestions === allQuestions.length) {
-        displayResult();
+        // Animer les confettis
+        launchConfetti();
+        // Afficher le résultat après l'animation
+        setTimeout(displayResult, 1500);  // Attendre la fin de l'animation des confettis avant d'afficher le résultat
     }
 }
 
@@ -68,6 +71,16 @@ function displayResult() {
     const finalResult = document.getElementById("final-result");
     finalResult.textContent = `Vous avez répondu correctement à ${correctAnswers} question(s) sur ${correctAnswersArray.length}.`;
     finalResult.style.display = "block"; // Afficher le message final
+}
+
+// Lancer l'animation de confettis
+function launchConfetti() {
+    // Animation de confettis
+    confetti({
+        particleCount: 200,
+        spread: 60,
+        origin: { y: 0.6 }
+    });
 }
 
 // Ajouter des écouteurs d'événements aux boutons
@@ -91,3 +104,37 @@ document.getElementById("btn-17").addEventListener("click", function() { checkAn
 document.getElementById("btn-18").addEventListener("click", function() { checkAnswer(this, 9); });
 document.getElementById("btn-19").addEventListener("click", function() { checkAnswer(this, 10); });
 document.getElementById("btn-20").addEventListener("click", function() { checkAnswer(this, 10); });
+
+
+document.getElementById("restart-btn").addEventListener("click", function() {
+    location.reload();  // Recharger la page pour recommencer le quiz
+});
+function displayResult() {
+    const finalResult = document.getElementById("final-result");
+    const percentage = (correctAnswers / correctAnswersArray.length) * 100;
+
+    let message = '';
+    if (percentage === 100) {
+        message = "Excellent ! Vous êtes un expert ! 🎉";
+    } else if (percentage >= 80) {
+        message = "Très bien joué ! 😊";
+    } else if (percentage >= 50) {
+        message = "Pas mal, mais il reste encore à apprendre !";
+    } else {
+        message = "Tu peux faire mieux, persévère ! 💪";
+    }
+
+    finalResult.textContent = `Vous avez répondu correctement à ${correctAnswers} question(s) sur ${correctAnswersArray.length} (${percentage.toFixed(2)}%). ${message}`;
+    finalResult.style.display = "block";
+}
+document.getElementById("night-mode-toggle").addEventListener("click", function() {
+    // Bascule entre mode nuit et mode jour
+    document.body.classList.toggle("night-mode");
+
+    // Changer le texte du bouton selon l'état actuel
+    if (document.body.classList.contains("night-mode")) {
+        this.textContent = "Mode Jour";  // Lorsque nous sommes en mode nuit, le bouton doit dire "Mode Jour"
+    } else {
+        this.textContent = "Mode Nuit";  // Lorsque nous sommes en mode jour, le bouton doit dire "Mode Nuit"
+    }
+});
